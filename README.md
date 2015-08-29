@@ -1,11 +1,13 @@
-### Ionic-Webpack-ES6
+### Ionic-Webpack-ES6-Components
 
-Starter Project for Ionic using ES6.
+Starter Project for Ionic using ES6, with components generator
 
 Originally forked and inspired by: 
-[ios-android-wordpress-ionic-webpack-ES6](https://github.com/shprink/ios-android-wordpress-ionic-webpack-ES6)
-[NG6-Starter](https://github.com/angular-class/NG6-starter)
+* [ios-android-wordpress-ionic-webpack-ES6](https://github.com/shprink/ios-android-wordpress-ionic-webpack-ES6)
 
+* [NG6-Starter](https://github.com/angular-class/NG6-starter)
+
+ 
 ### Install
 
 ```
