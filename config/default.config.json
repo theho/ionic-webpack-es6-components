@@ -2,5 +2,8 @@
   "cache": {
     "views": 10,
     "forward": false
+  },
+  "api": {
+    "url": "http://localhost:5000/api"
   }
 }

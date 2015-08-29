@@ -52,6 +52,8 @@
     "angular-aria": "^1.4.5",
     "angular-material": "^0.10.1",
     "ionic-sdk": "^1.0.0",
-    "lodash": "^3.9.3"
+    "lodash": "^3.9.3",
+    "restangular": "^1.5.1",
+    "satellizer": "^0.12.3"
   }
 }
