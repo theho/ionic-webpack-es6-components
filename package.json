@@ -1,7 +1,7 @@
 {
-  "name": "ios-android-wordpress-ionic-webpack-ES6",
+  "name": "ionic-webpack-es6-components",
   "version": "1.0.0",
-  "description": "Repo created for the TutsPlus article: Creating iOS/Android mobile applications for WordPress using Ionic SDK, Webpack, ES6 and WP-API",
+  "description": "Ionic starter project with webpack, es6 and component generator ",
   "main": "lib/index.js",
   "scripts": {
     "installCordova": "sh ./install_cordova.sh",
@@ -17,9 +17,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:shprink/ios-android-wordpress-ionic-webpack-ES6.git"
+    "url": "git@github.com:jimmyho/ionic-webpack-es6-components.git"
   },
-  "author": "shprink <contact@julienrenaux.fr> (http://julienrenaux.fr/)",
+  "author": "James Ho",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer-loader": "^2.0.0",
