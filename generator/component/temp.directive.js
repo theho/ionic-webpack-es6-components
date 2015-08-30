@@ -10,7 +10,7 @@ class <%= name %>Directive {
   constructor() {
     this.template = template;
     this.restrict = 'E';
-    this.controller = '<%= name %>Controller';
+    this.controller = '<%= upCaseName %>Controller';
     this.controllerAs = 'vm';
     this.scope = {}
     // etc. for the usual config options

@@ -6,7 +6,7 @@ export default function ($stateProvider, $urlRouterProvider) {
   //    views: {
   //      'content@root': {
   //        template: require("./<%= name %>.html"),
-  //        controller: "<%= name %>Controller as vm"
+  //        controller: "<%= upCaseName %>Controller as vm"
   //      }
   //    }
   //  })

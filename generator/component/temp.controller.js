@@ -1,4 +1,4 @@
-class <%= name %>Controller {
+class <%= upCaseName %>Controller {
   /*@ngInject*/
 
   constructor(<%= upCaseName %>Service) {
@@ -14,4 +14,4 @@ class <%= name %>Controller {
 }
 
 
-export default <%= name %>Controller;
+export default <%= upCaseName %>Controller;

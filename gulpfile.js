@@ -40,6 +40,7 @@ gulp.task('component', function () {
     return val.charAt(0).toUpperCase() + val.slice(1);
   };
 
+  var namespace = yargs.namespace || 'main'
   var name = yargs.name;
   var parentPath = yargs.parent || '';
   var destPath = path.join(resolveToComponents(), parentPath, name);
@@ -47,7 +48,8 @@ gulp.task('component', function () {
   return gulp.src(paths.blankTemplates)
     .pipe(template({
       name: name,
-      upCaseName: cap(name)
+      upCaseName: cap(name),
+      namespace: namespace
     }))
     .pipe(rename(function (path) {
       path.basename = path.basename.replace('temp', name);
