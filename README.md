@@ -22,8 +22,11 @@ npm run installCordova
 ### Run
 
 ```
-# Web
+# Web - using webpack-dev-server
 npm run devserver
+
+# Web - using BrowserSync
+webpack --watch
 
 # Android
 npm run runAndroid
