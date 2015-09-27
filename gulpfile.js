@@ -15,7 +15,7 @@ var resolveToApp = function (glob) {
 
 var resolveToComponents = function (glob) {
   glob = glob || '';
-  return path.join(root, glob); // app/components/{glob}
+  return path.join(root, 'components', glob); // app/components/{glob}
 };
 
 var root = 'lib';
@@ -49,6 +49,7 @@ gulp.task('component', function () {
     .pipe(template({
       name: name,
       upCaseName: cap(name),
+      lowerCaseName: name.toLowerCase(),
       namespace: namespace
     }))
     .pipe(rename(function (path) {
