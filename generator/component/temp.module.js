@@ -7,11 +7,13 @@ import <%= upCaseName %>Controller from './<%= name %>.controller';
 import <%= upCaseName %>Service from './<%= name %>.service';
 
 
-let <%= name %>Module = angular.module('<%= namespace %>.<%= name %>', [
+var <%= name %>Module = angular.module('<%= namespace %>.<%= name %>', [
   uiRouter
-])
+]);
+
+register(<%= name %>Module.name)
   .config(<%= name %>Config)
-  .directive('<%= name %>', () => new <%= name %>Directive())
+  .directive('<%= name %>', <%= name %>Directive)
   .controller('<%= upCaseName %>Controller', <%= upCaseName %>Controller)
   .service('<%= upCaseName %>Service', <%= upCaseName %>Service);
 

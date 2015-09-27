@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-        <title>{%=o.htmlWebpackPlugin.options.pkg.title %}</title>
-        <!-- cordova script (this will be a 404 during development) -->
-        <script src="cordova.js"></script>
-    </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title>{%=o.htmlWebpackPlugin.options.pkg.title %}</title>
+  <!-- cordova script (this will be a 404 during development) -->
+  <script src="cordova.js"></script>
+  {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
+  <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
+  {% } %}
 
-    <body ng-strict-di ng-app="main">
-        <ion-nav-view></ion-nav-view>
-        {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
-        <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}"></script>
-        {% } %}
-    </body>
-    <!-- {%= o.htmlWebpackPlugin.options.pkg.name + ' v' + o.htmlWebpackPlugin.options.pkg.version + ' built on ' + new Date() %} -->
+</head>
+
+<body ng-strict-di ng-app="main">
+<!--
+      The nav bar that will be updated as we navigate between views.
+    -->
+<ion-nav-bar class="bar-stable">
+  <ion-nav-back-button>
+  </ion-nav-back-button>
+</ion-nav-bar>
+<!--
+  The views will be rendered in the <ion-nav-view> directive below
+  Templates are in the /templates folder (but you could also
+  have templates inline in this html file if you'd like).
+-->
+<ion-nav-view></ion-nav-view>
+</body>
+<!-- {%= o.htmlWebpackPlugin.options.pkg.name + ' v' + o.htmlWebpackPlugin.options.pkg.version + ' built on ' + new Date() %} -->
 </html>

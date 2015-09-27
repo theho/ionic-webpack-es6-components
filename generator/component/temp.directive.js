@@ -12,7 +12,10 @@ class <%= name %>Directive {
     this.restrict = 'E';
     this.controller = '<%= upCaseName %>Controller';
     this.controllerAs = 'vm';
-    this.scope = {}
+    this.bindToController = true
+    this.scope = {
+
+    }
     // etc. for the usual config options
 
     // allows us to use the injected dependencies

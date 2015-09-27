@@ -1,9 +1,8 @@
 class <%= upCaseName %>Controller {
-  /*@ngInject*/
 
+  /*@ngInject*/
   constructor(<%= upCaseName %>Service) {
 		this.name = '<%= name %>';
-
 		this.<%= upCaseName %>Service = <%= upCaseName %>Service;
 	}
 
@@ -12,6 +11,5 @@ class <%= upCaseName %>Controller {
   }
 
 }
-
 
 export default <%= upCaseName %>Controller;

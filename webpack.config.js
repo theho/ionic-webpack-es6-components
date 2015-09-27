@@ -7,6 +7,12 @@ var path = require('path'),
 
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
+var aliases = {
+  'registerjs': path.resolve(__dirname, './lib/util/register.js'),
+  //'ui-router': path.resolve(__dirname, '../node_modules/ionic-sdk/release/js/angular-ui/angular-ui-router.min.js')
+};
+
+
 module.exports = {
   entry: path.join(libPath, 'index.js'),
   output: {
@@ -27,8 +33,8 @@ module.exports = {
       test: /\.json$/,
       loader: "json"
     }, {
-      test: /\.(png|jpg)$/,
-      loader: 'file?name=img/[name].[ext]'
+      test: /\.(png|jpg|svg)$/,
+      loader: 'file?name=images/[path][name].[ext]'
     }, {
       test: /\.css$/,
       loader: "style!css"
@@ -52,7 +58,9 @@ module.exports = {
     ],
     moduleDirectories: [
       'node_modules'
-    ]
+    ],
+    alias: aliases
+
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -64,6 +72,9 @@ module.exports = {
       host: 'localhost',
       port: 3000,
       server: {baseDir: ['www']}
-    })
+    }),
+    new webpack.ProvidePlugin({
+      register: 'registerjs'
+    }),
   ]
 };
