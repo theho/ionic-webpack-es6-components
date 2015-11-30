@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "angular": "^1.4.5",
-    "angular-material-design-lite": "git+https://github.com/jimmyho/angular-material-design-lite.git",
     "ionic-sdk": "^1.0.0",
     "lodash": "^3.9.3",
     "material-design-lite": "^1.0.5",
