@@ -52,7 +52,6 @@
     "angular": "^1.4.5",
     "ionic-sdk": "^1.0.0",
     "lodash": "^3.9.3",
-    "material-design-lite": "^1.0.5",
     "restangular": "^1.5.1",
     "satellizer": "^0.12.3"
   },
