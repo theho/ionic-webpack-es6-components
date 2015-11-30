@@ -1,20 +1,17 @@
-<ion-nav-bar class="bar-positive <%= lowerCaseName %>">
-  <ion-nav-back-button>
-  </ion-nav-back-button>
-</ion-nav-bar>
+<ion-view class="<%= lowerCaseName %>">
 
-<ion-view mdl-upgrade>
-
-  <ion-nav-buttons side="right" class="<%= lowerCaseName %>">
+<!--
+  <ion-nav-buttons side="right">
     <button class="button button-icon button-clear ion-ios-gear-outline">
     </button>
   </ion-nav-buttons>
+-->
 
   <ion-nav-title>
     {{vm.name}}
   </ion-nav-title>
 
-  <ion-content layout="column">
+  <ion-content has-bouncing="false" scroll="false">
     This is {{vm.name}} view
   </ion-content>
 

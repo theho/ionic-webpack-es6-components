@@ -1,12 +1,14 @@
 class <%= upCaseName %>Service {
 	/*@ngInject*/
-	constructor(){
+	constructor($log, $q){
 		this.name = '<%= name %>';
+    this.$log = $log
+		this.$q = $q
 	}
 
 	sayHello() {
-    return 'hello';
-  }
+       'hello';
+    }
 }
 
 export default <%= upCaseName %>Service;

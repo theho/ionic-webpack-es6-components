@@ -11,5 +11,4 @@ export default function ($stateProvider, $urlRouterProvider) {
   //    }
   //  })
   //;
-  //$urlRouterProvider.otherwise("/<%= name %>");
 }
