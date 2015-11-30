@@ -5,9 +5,9 @@
   "main": "lib/index.js",
   "scripts": {
     "installCordova": "sh ./install_cordova.sh",
-    "devserver": "webpack-dev-server --colors --json --progress",
+    "devserver": "webpack-dev-server --colors --json --progress --port 3000 --inline",
     "dumpdev": "rm -rf www/* && webpack",
-    "dumpprod": "rm -rf www/* && webpack --release --config webpack.config.prod.js",
+    "dumpprod": "rm -rf www/* && webpack --release --colors --progress --config webpack.config.prod.js",
     "runAndroid": "npm run dumpdev && cordova run android",
     "runIosEmulator": "npm run dumpdev && cordova run ios",
     "runIosDevice": "npm run dumpdev && cordova run ios --device",
