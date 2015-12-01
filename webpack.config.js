@@ -5,8 +5,6 @@ var path = require('path'),
   webpack = require("webpack"),
   HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-
 var aliases = {
   'registerjs': path.resolve(__dirname, './lib/util/register.js'),
   //'ui-router': path.resolve(__dirname, '../node_modules/ionic-sdk/release/js/angular-ui/angular-ui-router.min.js')
@@ -67,11 +65,6 @@ module.exports = {
       filename: 'index.html',
       pkg: pkg,
       template: path.join(libPath, 'index.html')
-    }),
-    new BrowserSyncPlugin({
-      host: 'localhost',
-      port: 3000,
-      server: {baseDir: ['www']}
     }),
     new webpack.ProvidePlugin({
       register: 'registerjs'
