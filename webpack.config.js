@@ -8,6 +8,9 @@ var loadersByExtension = util.loadersByExtension;
 
 var libPath = path.join(__dirname, 'lib');
 var wwwPath = path.join(__dirname, 'www');
+var deepExtend = require('deep-extend');
+
+var env = JSON.stringify(require('./env/default.env.json'))
 
 module.exports = function (options) {
   'use strict';
@@ -16,6 +19,7 @@ module.exports = function (options) {
 
   var entry = path.join(libPath, 'index.js')
   var root = [libPath,];
+
 
   // Plug-ins
   var plugins = [
@@ -28,7 +32,17 @@ module.exports = function (options) {
       register: 'registerjs',
       _: 'lodash',
     }),
+
   ];
+
+  // Environment
+  deepExtend(env, JSON.stringify(require('./env/' + options.env + '.env.json')))
+
+  plugins.push(
+    new webpack.DefinePlugin({
+      ENV: env
+    })
+  );
 
   // Loaders
   var scriptLoaders = {
