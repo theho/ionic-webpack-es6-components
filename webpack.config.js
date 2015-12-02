@@ -10,12 +10,9 @@ var libPath = path.join(__dirname, 'lib');
 var wwwPath = path.join(__dirname, 'www');
 var deepExtend = require('deep-extend');
 
-var env = JSON.stringify(require('./env/default.env.json'))
 
 module.exports = function (options) {
   'use strict';
-
-  var isDev = options.isDev || true;
 
   var entry = path.join(libPath, 'index.js')
   var root = [libPath,];
@@ -35,12 +32,15 @@ module.exports = function (options) {
 
   ];
 
-  // Environment
-  deepExtend(env, JSON.stringify(require('./env/' + options.env + '.env.json')))
+  // Extend default Env with specific env
+  var env = (require('./env/default.env.json'))
+  var myenv = (require('./env/' + options.env + '.env.json'))
+
+  deepExtend(env, myenv)
 
   plugins.push(
     new webpack.DefinePlugin({
-      ENV: env
+      Env: JSON.stringify(env)
     })
   );
 

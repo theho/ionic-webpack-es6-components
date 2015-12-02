@@ -6,6 +6,8 @@
   "scripts": {
     "installCordova": "sh ./install_cordova.sh",
     "devserver": "webpack-dev-server --colors --json --progress --port 3000 --inline --config ./config/dev.webpack.config.js",
+    "hotserver": "webpack-dev-server --colors --json --progress --port 3000 --inline --config ./config/dev.webpack.config.js --hot",
+
     "prodserver": "webpack-dev-server --colors --json --progress --port 3000 --inline --config ./config/prod.webpack.config.js",
     "dumpdev": "rm -rf www/* && webpack",
     "dumpprod": "rm -rf www/* && webpack --release --colors --progress --config ./config/prod.webpack.config.js",
