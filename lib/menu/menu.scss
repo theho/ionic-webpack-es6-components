@@ -1,0 +1,41 @@
+@import "../scss/_variables.scss";
+
+.menu {
+  //color: red;
+  .bar.bar-stable {
+    background-color: #f8f8f6;
+  }
+  .scroll-content {
+    background-color: #f4f7f8;
+  }
+
+  .list .item {
+    background: transparent;
+    color: #666;
+    border-top: none;
+    border-color: #eee;
+    padding-left: 10px;
+    .item-content {
+      background: transparent;
+    }
+  }
+
+  .bar-header {
+    padding-left: 10px;
+    p {
+      margin: 0px;
+    }
+  }
+  ion-item{
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 200;
+    color: black !important;
+    border: none;
+  }
+
+  .item-complex.item-icon-left .item-content {
+    padding-left: 65px;
+  }
+}
+

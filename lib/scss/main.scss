@@ -2,3 +2,8 @@
 // Include all of Ionic
 @import "~ionic-sdk/scss/ionic";
 @import "./spinner";
+
+
+.nav-bar-container .button {
+  color: $primary-color !important;
+}

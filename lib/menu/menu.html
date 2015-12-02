@@ -1,8 +1,12 @@
 <ion-view>
-    <ion-header-bar class="bar-positive">
-        <h1 class="title">Menu</h1>
+  <ion-view class="menu">
+
+    <ion-header-bar class="bar bar-header bar-light">
+      <button class="button button-clear icon ion-ios-close-empty" ng-click="vm.menuClose()">
+      </button>
     </ion-header-bar>
-    <ion-content>
+
+    <ion-content class="flex-col flex-justify" scroll="false">
         <ion-list>
             <ion-item class="item item-icon-left" nav-clear menu-close ui-sref="root.home" ui-sref-active="active">
                 <i class="icon ion-home"></i> Home
