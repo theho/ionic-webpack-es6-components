@@ -25,7 +25,8 @@ module.exports = function (options) {
       template: path.join(libPath, 'index.html')
     }),
     new webpack.ProvidePlugin({
-      register: 'registerjs'
+      register: 'registerjs',
+      _: 'lodash',
     }),
   ];
 
@@ -34,12 +35,6 @@ module.exports = function (options) {
     'js': {
       loader: 'ng-annotate?add=true!babel',
       exclude: /(node_modules)/,
-    },
-    'angular.js': {
-      loader: 'expose?angular!exports?window.angular'
-    },
-    'lodash.js': {
-      loader: 'expose?_'
     },
     'html': {
       loader: 'html'
