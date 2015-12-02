@@ -1,66 +1,24 @@
-var path = require('path'),
-  libPath = path.join(__dirname, 'lib'),
-  wwwPath = path.join(__dirname, 'www'),
-  pkg = require('./package.json'),
-  webpack = require("webpack"),
-  HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
 
-var aliases = {
-  'registerjs': path.resolve(__dirname, './lib/util/register.js'),
-  //'ui-router': path.resolve(__dirname, '../node_modules/ionic-sdk/release/js/angular-ui/angular-ui-router.min.js')
-};
+var pkg = require('./package.json');
+var webpack = require("webpack");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var util = require('./config/util/');
+var loadersByExtension = util.loadersByExtension;
 
+var libPath = path.join(__dirname, 'lib');
+var wwwPath = path.join(__dirname, 'www');
 
-module.exports = {
-  entry: path.join(libPath, 'index.js'),
-  output: {
-    path: wwwPath,
-    filename: 'prototype-[hash:6].js'
-  },
-  module: {
-    loaders: [{
-      test: /[\/]angular\.js$/,
-      loader: 'expose?angular!exports?window.angular'
-    }, {
-      test: /[\/]lodash\.js$/,
-      loader: 'expose?_'
-    }, {
-      test: /\.html$/,
-      loader: 'html'
-    }, {
-      test: /\.json$/,
-      loader: "json"
-    }, {
-      test: /\.(png|jpg|svg)$/,
-      loader: 'file?name=images/[path][name].[ext]'
-    }, {
-      test: /\.css$/,
-      loader: "style!css"
-    }, {
-      test: /\.js$/,
-      exclude: /(node_modules)/,
-      loader: "ng-annotate?add=true!babel"
-    }, {
-      test: /\.scss$/,
-      loader: "style!css!autoprefixer!sass"
-    }, {
-      test: [/ionicons\.svg/, /ionicons\.eot/, /ionicons\.ttf/, /ionicons\.woff/],
-      loader: 'file?name=fonts/[name].[ext]'
-    }]
-  },
-  resolve: {
-    extensions: ['', '.js', '.json', '.scss', '.html'],
-    root: [
-      libPath,
-      path.join(__dirname, 'node_modules')
-    ],
-    moduleDirectories: [
-      'node_modules'
-    ],
-    alias: aliases
+module.exports = function (options) {
+  'use strict';
 
-  },
-  plugins: [
+  var isDev = options.isDev || true;
+
+  var entry = path.join(libPath, 'index.js')
+  var root = [libPath,];
+
+  // Plug-ins
+  var plugins = [
     new HtmlWebpackPlugin({
       filename: 'index.html',
       pkg: pkg,
@@ -69,5 +27,90 @@ module.exports = {
     new webpack.ProvidePlugin({
       register: 'registerjs'
     }),
-  ]
-};
+  ];
+
+  // Loaders
+  var scriptLoaders = {
+    'js': {
+      loader: 'ng-annotate?add=true!babel',
+      exclude: /(node_modules)/,
+    },
+    'angular.js': {
+      loader: 'expose?angular!exports?window.angular'
+    },
+    'lodash.js': {
+      loader: 'expose?_'
+    },
+    'html': {
+      loader: 'html'
+    },
+    'json': {
+      loader: "json"
+    },
+    'png|jpg|svg': {
+      loader: 'file?name=images/[path][name].[ext]'
+    },
+    'eot|ttf|woff|svg': {
+      loader: 'file?name=fonts/[name].[ext]'
+    }
+  };
+
+  var browsers = {browsers: ['last 2 version', 'ie >= 10']};
+  var stylesheetLoaders = {
+    'scss|css': 'style!css-loader!autoprefixer-loader?' + JSON.stringify(browsers) + '!sass'
+  };
+
+  Object.keys(stylesheetLoaders).forEach(function (ext) {
+    var loaders = stylesheetLoaders[ext];
+
+    if (Array.isArray(loaders)) loaders = loaders.join('!');
+    stylesheetLoaders[ext] = 'style-loader!' + loaders;
+  });
+
+  var loaders = loadersByExtension(scriptLoaders).concat(loadersByExtension(stylesheetLoaders));
+
+
+  if (options.optimized) {
+    plugins.push(
+      new HtmlWebpackPlugin({
+        filename: 'index.html',
+        pkg: pkg,
+        template: path.join(libPath, 'index.html')
+      }),
+      new webpack.ProvidePlugin({
+        register: 'registerjs'
+      }),
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.DedupePlugin(),
+      new webpack.optimize.UglifyJsPlugin()
+    )
+  }
+
+  var output = {
+    path: wwwPath,
+    filename: 'app-[hash:6].js',
+    pathinfo: options.debug,
+    sourceMapFilename: 'debugging/[file].map',
+  };
+
+  // Export
+  return {
+    entry: entry,
+    output: output,
+    module: {
+      loaders: loaders,
+    },
+    devtool: options.devtool,
+    resolve: {
+      extensions: ['', '.js', '.json', '.scss', '.html'],
+      root: root,
+      moduleDirectories: [
+        'node_modules'
+      ],
+      alias: {
+        'registerjs': path.resolve(__dirname, './lib/util/register.js'),
+      }
+    },
+    plugins: plugins
+  }
+}
